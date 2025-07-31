@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Logbook AVSEC - PDF</title>
+  <title>Logbook AVSEC</title>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <style>
     body {
@@ -55,12 +55,12 @@
   <input type="date" id="tanggal">
 
   <label>Shift</label>
-  <input type="text" id="shift">
+  <input type="text" id="shift" placeholder="Contoh: Pagi / Sore / Malam">
 
   <label>Jam Tugas</label>
-  <input type="text" id="jam">
+  <input type="text" id="jam" placeholder="06.00 WIB - 14.00 WIB">
 
-  <label>Personel (Nama dan Jabatan)</label>
+  <label>Daftar Personel & Jabatan</label>
   <div id="personel"></div>
 
   <script>
@@ -98,7 +98,6 @@
     async function generatePDF() {
       const { jsPDF } = window.jspdf;
       const doc = new jsPDF();
-
       let y = 10;
 
       const getVal = id => document.getElementById(id).value;
