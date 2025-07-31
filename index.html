@@ -1,156 +1,145 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Profil Produk</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Logbook AVSEC - PDF</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <style>
-    * {
-      box-sizing: border-box;
-    }
-
     body {
       font-family: Arial, sans-serif;
-      background: #eef3f8;
-      margin: 0;
-      padding: 10px;
+      padding: 20px;
+      background: #f4f6f8;
     }
-
-    .container {
-      max-width: 100%;
-      margin: auto;
-      background: white;
-      border-radius: 15px;
-      padding: 15px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    }
-
-    .profile {
+    h2 {
       text-align: center;
     }
-
-    .avatar {
-      width: 60px;
-      height: 60px;
-      background: #ccc;
-      border-radius: 50%;
-      margin: auto;
-    }
-
-    .name {
-      font-weight: bold;
-      font-size: 18px;
+    label {
+      display: block;
       margin-top: 10px;
+      font-weight: bold;
     }
-
-    .desc {
-      color: #555;
+    input, textarea {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
       font-size: 14px;
-      margin-bottom: 10px;
     }
-
-    .social-icons {
-      margin: 10px 0;
-    }
-
-    .social-icons a {
-      margin: 0 8px;
-      text-decoration: none;
-      font-size: 20px;
-    }
-
-    .product-grid {
+    .row {
       display: flex;
       gap: 10px;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      margin-top: 15px;
+      margin-top: 10px;
     }
-
-    .product {
-      flex: 0 0 48%;
-      border: 1px solid #ddd;
-      border-radius: 10px;
-      background: #f8f8f8;
-      text-align: center;
-      padding: 10px;
+    .row input {
+      flex: 1;
     }
-
-    .product img {
-      width: 100%;
-      height: auto;
-      border-radius: 8px;
-    }
-
-    .product-name {
-      font-size: 14px;
-      font-weight: bold;
-      margin: 10px 0 5px;
-    }
-
-    .price {
-      font-size: 13px;
-      color: #777;
-    }
-
-    .full-width-product {
+    button {
       margin-top: 20px;
-      padding: 15px;
-      background: #dceeff;
-      border-radius: 10px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .full-width-product a {
-      background: #ff5e5e;
+      padding: 10px 20px;
+      background: #007bff;
       color: white;
-      padding: 7px 15px;
-      border-radius: 6px;
-      text-decoration: none;
-      font-size: 14px;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
     }
-
-    @media (max-width: 480px) {
-      .product {
-        flex: 0 0 100%;
-      }
-    }
-
   </style>
 </head>
 <body>
-  <div class="container">
-    <div class="profile">
-      <div class="avatar"></div>
-      <div class="name">Nama Akun</div>
-      <div class="desc">Ceritakan tentang dirimu</div>
-      <div class="social-icons">
-        <a href="#" title="Instagram">📷</a>
-        <a href="#" title="Link">🔗</a>
-        <a href="#" title="TikTok">🎵</a>
-        <a href="mailto:email@example.com" title="Email">✉️</a>
-      </div>
-    </div>
 
-    <div class="product-grid">
-      <div class="product">
-        <img src="https://via.placeholder.com/150" alt="Produk 1">
-        <div class="product-name">Nama Produk</div>
-        <div class="price">Rp100.000</div>
-      </div>
-      <div class="product">
-        <img src="https://via.placeholder.com/150" alt="Produk 2">
-        <div class="product-name">Nama Produk</div>
-        <div class="price">Rp120.000</div>
-      </div>
-    </div>
+  <h2>Form Logbook Harian AVSEC</h2>
 
-    <div class="full-width-product">
-      <div>Nama Produk</div>
-      <a href="https://example.com" target="_blank">Harga</a>
-    </div>
-  </div>
+  <label>Tanggal</label>
+  <input type="date" id="tanggal">
+
+  <label>Shift</label>
+  <input type="text" id="shift">
+
+  <label>Jam Tugas</label>
+  <input type="text" id="jam">
+
+  <label>Personel (Nama dan Jabatan)</label>
+  <div id="personel"></div>
+
+  <script>
+    for (let i = 1; i <= 10; i++) {
+      document.getElementById('personel').innerHTML += `
+        <div class="row">
+          <input type="text" placeholder="Nama ${i}" id="nama${i}">
+          <input type="text" placeholder="Sebagai" id="jabatan${i}">
+        </div>
+      `;
+    }
+  </script>
+
+  <label>Sisi Udara</label>
+  <textarea id="udara"></textarea>
+
+  <label>Sisi Darat</label>
+  <textarea id="darat"></textarea>
+
+  <label>Perimeter</label>
+  <textarea id="perimeter"></textarea>
+
+  <label>Area Publik</label>
+  <textarea id="publik"></textarea>
+
+  <label>Patroli</label>
+  <textarea id="patroli"></textarea>
+
+  <label>Catatan</label>
+  <textarea id="catatan"></textarea>
+
+  <button onclick="generatePDF()">Download PDF</button>
+
+  <script>
+    async function generatePDF() {
+      const { jsPDF } = window.jspdf;
+      const doc = new jsPDF();
+
+      let y = 10;
+
+      const getVal = id => document.getElementById(id).value;
+
+      doc.setFontSize(12);
+      doc.text("LOGBOOK HARIAN AVSEC", 70, y); y += 10;
+      doc.text(`Tanggal: ${getVal("tanggal")}`, 10, y);
+      doc.text(`Shift: ${getVal("shift")}`, 100, y); y += 10;
+      doc.text(`Jam Tugas: ${getVal("jam")}`, 10, y); y += 10;
+
+      doc.text("Personel:", 10, y); y += 8;
+      for (let i = 1; i <= 10; i++) {
+        let nama = getVal(`nama${i}`);
+        let jab = getVal(`jabatan${i}`);
+        if (nama || jab) {
+          doc.text(`${i}. ${nama} - Sebagai (${jab})`, 12, y);
+          y += 7;
+        }
+      }
+
+      const addSection = (title, content) => {
+        if (y > 270) { doc.addPage(); y = 10; }
+        doc.setFont(undefined, "bold");
+        doc.text(`${title}:`, 10, y); y += 6;
+        doc.setFont(undefined, "normal");
+        const lines = doc.splitTextToSize(content, 180);
+        doc.text(lines, 12, y);
+        y += lines.length * 6;
+      }
+
+      addSection("Sisi Udara", getVal("udara"));
+      addSection("Sisi Darat", getVal("darat"));
+      addSection("Perimeter", getVal("perimeter"));
+      addSection("Area Publik", getVal("publik"));
+      addSection("Patroli", getVal("patroli"));
+      addSection("Catatan", getVal("catatan"));
+
+      const filename = `Logbook-AVSEC-${getVal("tanggal") || "tanpa-tanggal"}.pdf`;
+      doc.save(filename);
+    }
+  </script>
+
 </body>
 </html>
