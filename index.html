@@ -2,21 +2,26 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Profil Produk</title>
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       font-family: Arial, sans-serif;
       background: #eef3f8;
       margin: 0;
-      padding: 20px;
+      padding: 10px;
     }
 
     .container {
-      max-width: 400px;
+      max-width: 100%;
       margin: auto;
       background: white;
-      border-radius: 20px;
-      padding: 20px;
+      border-radius: 15px;
+      padding: 15px;
       box-shadow: 0 4px 10px rgba(0,0,0,0.1);
     }
 
@@ -34,12 +39,14 @@
 
     .name {
       font-weight: bold;
+      font-size: 18px;
       margin-top: 10px;
     }
 
     .desc {
       color: #555;
       font-size: 14px;
+      margin-bottom: 10px;
     }
 
     .social-icons {
@@ -47,22 +54,23 @@
     }
 
     .social-icons a {
-      margin: 0 5px;
+      margin: 0 8px;
       text-decoration: none;
       font-size: 20px;
     }
 
     .product-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 15px;
-      margin-top: 20px;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      margin-top: 15px;
     }
 
     .product {
+      flex: 0 0 48%;
       border: 1px solid #ddd;
       border-radius: 10px;
-      overflow: hidden;
       background: #f8f8f8;
       text-align: center;
       padding: 10px;
@@ -70,8 +78,8 @@
 
     .product img {
       width: 100%;
-      height: 100px;
-      object-fit: cover;
+      height: auto;
+      border-radius: 8px;
     }
 
     .product-name {
@@ -98,9 +106,16 @@
     .full-width-product a {
       background: #ff5e5e;
       color: white;
-      padding: 5px 15px;
-      border-radius: 5px;
+      padding: 7px 15px;
+      border-radius: 6px;
       text-decoration: none;
+      font-size: 14px;
+    }
+
+    @media (max-width: 480px) {
+      .product {
+        flex: 0 0 100%;
+      }
     }
 
   </style>
