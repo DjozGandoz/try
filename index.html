@@ -2,224 +2,63 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Logbook AVSEC dengan Tanda Tangan</title>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      padding: 20px;
-      background: #f4f6f8;
-    }
-    h2 {
-      text-align: center;
-    }
-    label {
-      display: block;
-      margin-top: 10px;
-      font-weight: bold;
-    }
-    input, textarea {
-      width: 100%;
-      padding: 8px;
-      margin-top: 5px;
-      border-radius: 5px;
-      border: 1px solid #ccc;
-      font-size: 14px;
-    }
-    .row {
-      display: flex;
-      gap: 10px;
-      margin-top: 10px;
-    }
-    .row input {
-      flex: 1;
-    }
-    button {
-      margin-top: 10px;
-      padding: 10px 20px;
-      background: #007bff;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      font-size: 16px;
-      cursor: pointer;
-    }
-    canvas {
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      margin-top: 10px;
-      background-color: #fff;
-      touch-action: none;
-    }
-  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FutureSkills Clone</title>
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
+<body class="bg-black text-white font-sans">
 
-  <h2>Form Logbook Harian AVSEC</h2>
+  <!-- Header -->
+  <header class="flex items-center justify-between px-4 py-3 bg-gray-900">
+    <div class="text-xl font-bold text-yellow-400">
+      Future<span class="text-blue-400">Skills</span>
+    </div>
+    <button class="text-white focus:outline-none">
+      ☰
+    </button>
+  </header>
 
-  <label>Tanggal</label>
-  <input type="date" id="tanggal">
+  <!-- Hero Section -->
+  <section class="p-4">
+    <div class="rounded-lg overflow-hidden shadow-lg">
+      <img src="https://via.placeholder.com/600x300" alt="Banner" class="w-full" />
+      <div class="bg-gray-800 p-4">
+        <div class="text-sm text-yellow-400 font-bold mb-1">Rp. 49.000</div>
+        <h2 class="text-lg font-bold">Belajar Skill Robot Programming untuk Industri Logistik</h2>
+        <p class="text-sm mt-1 text-gray-400">Jago Robotika</p>
+      </div>
+    </div>
+  </section>
 
-  <label>Shift</label>
-  <input type="text" id="shift">
+  <!-- Tombol lihat semua -->
+  <div class="text-center my-4">
+    <button class="bg-green-500 text-black font-bold py-2 px-4 rounded-full hover:bg-green-400">
+      Lihat Semua Konten
+    </button>
+  </div>
 
-  <label>Jam Tugas</label>
-  <input type="text" id="jam">
-
-  <label>Daftar Personel & Jabatan</label>
-  <div id="personel"></div>
-
-  <script>
-    for (let i = 1; i <= 10; i++) {
-      document.getElementById('personel').innerHTML += `
-        <div class="row">
-          <input type="text" placeholder="Nama ${i}" id="nama${i}">
-          <input type="text" placeholder="Sebagai" id="jabatan${i}">
+  <!-- Konten Baru -->
+  <section class="p-4">
+    <h3 class="text-lg font-bold mb-3 text-purple-300">Konten Baru untuk Kamu</h3>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <!-- Card 1 -->
+      <div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg">
+        <img src="https://via.placeholder.com/600x300" alt="Capcut" class="w-full" />
+        <div class="p-4">
+          <div class="text-sm text-blue-400 font-semibold mb-1">kelas</div>
+          <h4 class="text-lg font-bold">Mastering CapCut</h4>
         </div>
-      `;
-    }
-  </script>
-
-  <label>Sisi Udara</label>
-  <textarea id="udara"></textarea>
-
-  <label>Sisi Darat</label>
-  <textarea id="darat"></textarea>
-
-  <label>Perimeter</label>
-  <textarea id="perimeter"></textarea>
-
-  <label>Area Publik</label>
-  <textarea id="publik"></textarea>
-
-  <label>Patroli</label>
-  <textarea id="patroli"></textarea>
-
-  <label>Catatan</label>
-  <textarea id="catatan"></textarea>
-
-  <label>Tanda Tangan Petugas</label>
-  <canvas id="ttdPetugas" width="300" height="150"></canvas>
-  <button onclick="clearSignature('ttdPetugas')">Bersihkan TTD Petugas</button>
-
-  <label>Tanda Tangan Supervisor (SPV)</label>
-  <canvas id="ttdSpv" width="300" height="150"></canvas>
-  <button onclick="clearSignature('ttdSpv')">Bersihkan TTD SPV</button>
-
-  <br>
-  <button onclick="generatePDF()">Download PDF</button>
-
-  <script>
-    const canvasList = ['ttdPetugas', 'ttdSpv'];
-    const ctxMap = {};
-
-    canvasList.forEach(id => {
-      const canvas = document.getElementById(id);
-      const ctx = canvas.getContext('2d');
-      ctxMap[id] = ctx;
-      let isDrawing = false;
-
-      // Mouse
-      canvas.addEventListener('mousedown', e => {
-        isDrawing = true;
-        ctx.beginPath();
-        ctx.moveTo(e.offsetX, e.offsetY);
-      });
-      canvas.addEventListener('mousemove', e => {
-        if (isDrawing) {
-          ctx.lineTo(e.offsetX, e.offsetY);
-          ctx.stroke();
-        }
-      });
-      canvas.addEventListener('mouseup', () => isDrawing = false);
-      canvas.addEventListener('mouseleave', () => isDrawing = false);
-
-      // Touch
-      canvas.addEventListener('touchstart', function(e) {
-        e.preventDefault();
-        const touch = e.touches[0];
-        const rect = canvas.getBoundingClientRect();
-        const x = touch.clientX - rect.left;
-        const y = touch.clientY - rect.top;
-        isDrawing = true;
-        ctx.beginPath();
-        ctx.moveTo(x, y);
-      });
-      canvas.addEventListener('touchmove', function(e) {
-        e.preventDefault();
-        if (!isDrawing) return;
-        const touch = e.touches[0];
-        const rect = canvas.getBoundingClientRect();
-        const x = touch.clientX - rect.left;
-        const y = touch.clientY - rect.top;
-        ctx.lineTo(x, y);
-        ctx.stroke();
-      });
-      canvas.addEventListener('touchend', () => isDrawing = false);
-    });
-
-    function clearSignature(id) {
-      ctxMap[id].clearRect(0, 0, 300, 150);
-    }
-
-    async function generatePDF() {
-      const { jsPDF } = window.jspdf;
-      const doc = new jsPDF();
-      let y = 10;
-      const getVal = id => document.getElementById(id).value;
-
-      doc.setFontSize(12);
-      doc.text("LOGBOOK HARIAN AVSEC", 70, y); y += 10;
-      doc.text(`Tanggal: ${getVal("tanggal")}`, 10, y);
-      doc.text(`Shift: ${getVal("shift")}`, 100, y); y += 10;
-      doc.text(`Jam Tugas: ${getVal("jam")}`, 10, y); y += 10;
-
-      doc.text("Personel:", 10, y); y += 8;
-      for (let i = 1; i <= 10; i++) {
-        let nama = getVal(`nama${i}`);
-        let jab = getVal(`jabatan${i}`);
-        if (nama || jab) {
-          doc.text(`${i}. ${nama} - Sebagai (${jab})`, 12, y);
-          y += 7;
-        }
-      }
-
-      const addSection = (title, content) => {
-        if (y > 250) { doc.addPage(); y = 10; }
-        doc.setFont(undefined, "bold");
-        doc.text(`${title}:`, 10, y); y += 6;
-        doc.setFont(undefined, "normal");
-        const lines = doc.splitTextToSize(content, 180);
-        doc.text(lines, 12, y);
-        y += lines.length * 6;
-      }
-
-      addSection("Sisi Udara", getVal("udara"));
-      addSection("Sisi Darat", getVal("darat"));
-      addSection("Perimeter", getVal("perimeter"));
-      addSection("Area Publik", getVal("publik"));
-      addSection("Patroli", getVal("patroli"));
-      addSection("Catatan", getVal("catatan"));
-
-      // Tambah tanda tangan
-      const ttdPetugas = document.getElementById('ttdPetugas').toDataURL("image/png");
-      const ttdSpv = document.getElementById('ttdSpv').toDataURL("image/png");
-
-      if (y > 200) { doc.addPage(); y = 10; }
-
-      doc.setFont(undefined, "bold");
-      doc.text("Tanda Tangan Petugas:", 10, y); y += 5;
-      doc.addImage(ttdPetugas, 'PNG', 10, y, 60, 30); y += 35;
-
-      doc.setFont(undefined, "bold");
-      doc.text("Tanda Tangan Supervisor (SPV):", 10, y); y += 5;
-      doc.addImage(ttdSpv, 'PNG', 10, y, 60, 30); y += 35;
-
-      const filename = `Logbook-AVSEC-${getVal("tanggal") || "tanpa-tanggal"}.pdf`;
-      doc.save(filename);
-    }
-  </script>
+      </div>
+      <!-- Card 2 -->
+      <div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg">
+        <img src="https://via.placeholder.com/600x300" alt="Kelas 2" class="w-full" />
+        <div class="p-4">
+          <div class="text-sm text-blue-400 font-semibold mb-1">kelas</div>
+          <h4 class="text-lg font-bold">Pendidikan Lewat Perspektif Gus Dur</h4>
+        </div>
+      </div>
+    </div>
+  </section>
 
 </body>
 </html>
