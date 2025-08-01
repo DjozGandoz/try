@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Grafik Kegiatan</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="bg-gray-100 font-sans">
+
+  <!-- HEADER -->
+  <header class="bg-blue-600 text-white p-4 shadow-md text-center">
+    <h1 class="text-xl font-bold">Grafik Kegiatan</h1>
+    <p class="text-sm">Periode: Mingguan</p>
+  </header>
+
+  <!-- GRAFIK -->
+  <main class="p-4">
+    <div class="bg-white p-4 rounded-xl shadow">
+      <canvas id="logbookChart" width="100%" height="60"></canvas>
+    </div>
+  </main>
+
+  <!-- NAV BOTTOM -->
+  <footer class="fixed bottom-0 left-0 right-0 bg-white shadow-inner flex justify-around p-2 text-sm text-blue-600 md:hidden">
+    <a href="index.html">🏠 Dashboard</a>
+    <a href="input.html">📝 Input</a>
+    <a href="laporan.html">📁 Laporan</a>
+    <a href="grafik.html" class="font-bold">📊 Grafik</a>
+  </footer>
+
+  <!-- SCRIPT CHART -->
+  <script>
+    const ctx = document.getElementById('logbookChart').getContext('2d');
+    const logbookChart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu', 'Minggu'],
+        datasets: [{
+          label: 'Jumlah Kegiatan',
+          data: [5, 4, 6, 3, 7, 2, 1], // nanti bisa diganti data dari Firebase
+          backgroundColor: 'rgba(59, 130, 246, 0.7)',
+          borderRadius: 10
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { display: false },
+          title: {
+            display: true,
+            text: 'Aktivitas Logbook Minggu Ini',
+            font: { size: 16 }
+          }
+        },
+        scales: {
+          y: {
+            beginAtZero: true,
+            title: {
+              display: true,
+              text: 'Kegiatan'
+            }
+          }
+        }
+      }
+    });
+  </script>
+
+</body>
+</html>
