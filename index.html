@@ -1,64 +1,61 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>FutureSkills Clone</title>
-  <script src="https://cdn.tailwindcss.com"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dashboard Logbook AVSEC</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
-<body class="bg-black text-white font-sans">
+<body class="bg-gray-100 font-sans">
 
-  <!-- Header -->
-  <header class="flex items-center justify-between px-4 py-3 bg-gray-900">
-    <div class="text-xl font-bold text-yellow-400">
-      Future<span class="text-blue-400">Skills</span>
-    </div>
-    <button class="text-white focus:outline-none">
-      ☰
-    </button>
+  <!-- HEADER -->
+  <header class="bg-blue-600 text-white p-4 shadow-md">
+    <h1 class="text-xl font-bold">Logbook AVSEC</h1>
+    <p class="text-sm">1 Agustus 2025</p>
   </header>
 
-  <!-- Hero Section -->
-  <section class="p-4">
-    <div class="rounded-lg overflow-hidden shadow-lg">
-      <img src="https://via.placeholder.com/600x300" alt="Banner" class="w-full" />
-      <div class="bg-gray-800 p-4">
-        <div class="text-sm text-yellow-400 font-bold mb-1">Rp. 49.000</div>
-        <h2 class="text-lg font-bold">Belajar Skill Robot Programming untuk Industri Logistik</h2>
-        <p class="text-sm mt-1 text-gray-400">Jago Robotika</p>
-      </div>
+  <!-- MAIN CONTENT -->
+  <main class="p-4 space-y-4">
+    <!-- Greeting -->
+    <div class="bg-white p-4 rounded-xl shadow">
+      <h2 class="text-lg font-semibold">Halo, Petugas AVSEC 👋</h2>
+      <p>Selamat bertugas! Silakan input laporan hari ini.</p>
     </div>
-  </section>
 
-  <!-- Tombol lihat semua -->
-  <div class="text-center my-4">
-    <button class="bg-green-500 text-black font-bold py-2 px-4 rounded-full hover:bg-green-400">
-      Lihat Semua Konten
-    </button>
-  </div>
-
-  <!-- Konten Baru -->
-  <section class="p-4">
-    <h3 class="text-lg font-bold mb-3 text-purple-300">Konten Baru untuk Kamu</h3>
-    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-      <!-- Card 1 -->
-      <div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg">
-        <img src="https://via.placeholder.com/600x300" alt="Capcut" class="w-full" />
-        <div class="p-4">
-          <div class="text-sm text-blue-400 font-semibold mb-1">kelas</div>
-          <h4 class="text-lg font-bold">Mastering CapCut</h4>
-        </div>
-      </div>
-      <!-- Card 2 -->
-      <div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg">
-        <img src="https://via.placeholder.com/600x300" alt="Kelas 2" class="w-full" />
-        <div class="p-4">
-          <div class="text-sm text-blue-400 font-semibold mb-1">kelas</div>
-          <h4 class="text-lg font-bold">Pendidikan Lewat Perspektif Gus Dur</h4>
-        </div>
-      </div>
+    <!-- Aksi -->
+    <div class="grid grid-cols-2 gap-4">
+      <a href="input.html" class="bg-blue-500 text-white p-4 rounded-xl text-center shadow hover:bg-blue-600">
+        📄 Input Laporan
+      </a>
+      <a href="grafik.html" class="bg-green-500 text-white p-4 rounded-xl text-center shadow hover:bg-green-600">
+        📊 Grafik
+      </a>
+      <a href="laporan.html" class="bg-yellow-500 text-white p-4 rounded-xl text-center shadow hover:bg-yellow-600">
+        📁 Laporan
+      </a>
+      <a href="download.html" class="bg-gray-700 text-white p-4 rounded-xl text-center shadow hover:bg-gray-800">
+        ⬇️ Download PDF
+      </a>
     </div>
-  </section>
+
+    <!-- Ringkasan -->
+    <div class="bg-white p-4 rounded-xl shadow mt-4">
+      <h3 class="text-md font-bold mb-2">📌 Ringkasan Hari Ini</h3>
+      <ul class="space-y-1 text-sm">
+        <li>✔️ Kegiatan: 5</li>
+        <li>⚠️ Kejadian Khusus: 1</li>
+        <li>🕒 Shift: Pagi</li>
+      </ul>
+    </div>
+  </main>
+
+  <!-- NAV BOTTOM (mobile only) -->
+  <footer class="fixed bottom-0 left-0 right-0 bg-white shadow-inner flex justify-around p-2 text-sm text-blue-600 md:hidden">
+    <a href="index.html" class="text-blue-600 font-semibold">🏠 Dashboard</a>
+    <a href="input.html">📝 Input</a>
+    <a href="laporan.html">📁 Laporan</a>
+    <a href="akun.html">👤 Akun</a>
+  </footer>
 
 </body>
 </html>
