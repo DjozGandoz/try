@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Input Logbook</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 font-sans">
+
+  <!-- HEADER -->
+  <header class="bg-blue-600 text-white p-4 shadow-md text-center">
+    <h1 class="text-xl font-bold">Input Logbook</h1>
+    <p class="text-sm">1 Agustus 2025</p>
+  </header>
+
+  <!-- FORM -->
+  <main class="p-4">
+    <form class="bg-white p-4 rounded-xl shadow space-y-4">
+
+      <!-- Tanggal & Jam -->
+      <div>
+        <label class="block font-semibold mb-1">Tanggal</label>
+        <input type="date" class="w-full p-2 border rounded-md" required>
+      </div>
+      <div>
+        <label class="block font-semibold mb-1">Jam</label>
+        <input type="time" class="w-full p-2 border rounded-md" required>
+      </div>
+
+      <!-- Jenis Kegiatan -->
+      <div>
+        <label class="block font-semibold mb-1">Kegiatan</label>
+        <input type="text" placeholder="Contoh: Pemeriksaan X-ray" class="w-full p-2 border rounded-md" required>
+      </div>
+
+      <!-- Kejadian Khusus -->
+      <div>
+        <label class="block font-semibold mb-1">Kejadian Khusus (opsional)</label>
+        <textarea class="w-full p-2 border rounded-md" rows="3" placeholder="Isi jika ada kejadian tidak biasa"></textarea>
+      </div>
+
+      <!-- Upload Foto (opsional) -->
+      <div>
+        <label class="block font-semibold mb-1">Upload Foto (opsional)</label>
+        <input type="file" accept="image/*" class="w-full">
+      </div>
+
+      <!-- Tombol Simpan -->
+      <button type="submit" class="w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700">
+        Simpan Laporan
+      </button>
+
+    </form>
+  </main>
+
+  <!-- NAV BOTTOM -->
+  <footer class="fixed bottom-0 left-0 right-0 bg-white shadow-inner flex justify-around p-2 text-sm text-blue-600 md:hidden">
+    <a href="index.html">🏠 Dashboard</a>
+    <a href="input.html" class="font-bold">📝 Input</a>
+    <a href="laporan.html">📁 Laporan</a>
+    <a href="akun.html">👤 Akun</a>
+  </footer>
+
+</body>
+</html>
