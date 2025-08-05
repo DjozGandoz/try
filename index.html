@@ -3,58 +3,52 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Dashboard Logbook AVSEC</title>
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <title>Halaman Utama AVSEC</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #021859;
+      margin: 0;
+      padding: 20px;
+      color: white;
+      text-align: center;
+    }
+
+    .btn {
+      display: block;
+      width: 80%;
+      margin: 15px auto;
+      padding: 15px;
+      border-radius: 15px;
+      text-decoration: none;
+      color: white;
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    .green { background-color: #28a745; }
+    .blue { background-color: #007bff; }
+    .gray { background-color: #6c757d; }
+
+    footer {
+      margin-top: 30px;
+      font-size: 14px;
+      color: #ccc;
+    }
+  </style>
 </head>
-<body class="bg-gray-100 font-sans">
+<body>
 
-  <!-- HEADER -->
-  <header class="bg-blue-600 text-white p-4 shadow-md">
-    <h1 class="text-xl font-bold">Logbook AVSEC</h1>
-    <p class="text-sm">1 Agustus 2025</p>
-  </header>
+  <p><em>Salam hormat,</em><br>
+  <strong>Manajemen Kampen Bandara Rembele</strong></p>
 
-  <!-- MAIN CONTENT -->
-  <main class="p-4 space-y-4">
-    <!-- Greeting -->
-    <div class="bg-white p-4 rounded-xl shadow">
-      <h2 class="text-lg font-semibold">Halo, Petugas AVSEC 👋</h2>
-      <p>Selamat bertugas! Silakan input laporan hari ini.</p>
-    </div>
+  <a href="anggota.html" class="btn green">👥 Anggota AVSEC</a>
+  <a href="logbook.html" class="btn blue">📘 Logbook</a>
+  <a href="sop.html" class="btn gray">📄 SOP</a>
 
-    <!-- Aksi -->
-    <div class="grid grid-cols-2 gap-4">
-      <a href="input.html" class="bg-blue-500 text-white p-4 rounded-xl text-center shadow hover:bg-blue-600">
-        📄 Input Laporan
-      </a>
-      <a href="grafik.html" class="bg-green-500 text-white p-4 rounded-xl text-center shadow hover:bg-green-600">
-        📊 Grafik
-      </a>
-      <a href="laporan.html" class="bg-yellow-500 text-white p-4 rounded-xl text-center shadow hover:bg-yellow-600">
-        📁 Laporan
-      </a>
-      <a href="download.html" class="bg-gray-700 text-white p-4 rounded-xl text-center shadow hover:bg-gray-800">
-        ⬇️ Download PDF
-      </a>
-    </div>
-
-    <!-- Ringkasan -->
-    <div class="bg-white p-4 rounded-xl shadow mt-4">
-      <h3 class="text-md font-bold mb-2">📌 Ringkasan Hari Ini</h3>
-      <ul class="space-y-1 text-sm">
-        <li>✔️ Kegiatan: 5</li>
-        <li>⚠️ Kejadian Khusus: 1</li>
-        <li>🕒 Shift: Pagi</li>
-      </ul>
-    </div>
-  </main>
-
-  <!-- NAV BOTTOM (mobile only) -->
-  <footer class="fixed bottom-0 left-0 right-0 bg-white shadow-inner flex justify-around p-2 text-sm text-blue-600 md:hidden">
-    <a href="index.html" class="text-blue-600 font-semibold">🏠 Dashboard</a>
-    <a href="input.html">📝 Input</a>
-    <a href="laporan.html">📁 Laporan</a>
-    <a href="akun.html">👤 Akun</a>
+  <footer>
+    <p>© 2025 Aviation Security – Bandara Rembele. All rights reserved.<br>
+    <em>• Safety • Security • Service • and Compliance</em></p>
   </footer>
 
 </body>
